@@ -12,12 +12,15 @@
 		8D7DCD541BAF859400A92AD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D7DCD521BAF859400A92AD2 /* Main.storyboard */; };
 		8D7DCD561BAF859400A92AD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D7DCD551BAF859400A92AD2 /* Assets.xcassets */; };
 		8D7DCD591BAF859400A92AD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D7DCD571BAF859400A92AD2 /* LaunchScreen.storyboard */; };
+		9A880C4C1BB1B86C0096C660 /* GoogleMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A880C4B1BB1B86C0096C660 /* GoogleMapsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		9AE948401BAF931400787EA3 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE9483F1BAF931400787EA3 /* APIManager.m */; settings = {ASSET_TAGS = (); }; };
 		9AE948431BAF95A300787EA3 /* SearchLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE948421BAF95A300787EA3 /* SearchLocationViewController.m */; settings = {ASSET_TAGS = (); }; };
 		9AED01531BAFB1E6007542DC /* SearchResults.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AED01521BAFB1E5007542DC /* SearchResults.m */; settings = {ASSET_TAGS = (); }; };
+		BE04C3D1E5518055D4B76440 /* libPods-TalkinToTheNet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37904BB1087F2E6E22DA4EFC /* libPods-TalkinToTheNet.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		37904BB1087F2E6E22DA4EFC /* libPods-TalkinToTheNet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TalkinToTheNet.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D7DCD461BAF859400A92AD2 /* TalkinToTheNet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TalkinToTheNet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D7DCD4A1BAF859400A92AD2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D7DCD4C1BAF859400A92AD2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -26,12 +29,16 @@
 		8D7DCD551BAF859400A92AD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D7DCD581BAF859400A92AD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D7DCD5A1BAF859400A92AD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A880C4A1BB1B86C0096C660 /* GoogleMapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleMapsViewController.h; sourceTree = "<group>"; };
+		9A880C4B1BB1B86C0096C660 /* GoogleMapsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleMapsViewController.m; sourceTree = "<group>"; };
 		9AE9483E1BAF931400787EA3 /* APIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
 		9AE9483F1BAF931400787EA3 /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		9AE948411BAF95A300787EA3 /* SearchLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationViewController.h; sourceTree = "<group>"; };
 		9AE948421BAF95A300787EA3 /* SearchLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLocationViewController.m; sourceTree = "<group>"; };
 		9AED01511BAFB1E5007542DC /* SearchResults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResults.h; sourceTree = "<group>"; };
 		9AED01521BAFB1E5007542DC /* SearchResults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResults.m; sourceTree = "<group>"; };
+		C3F4742B6FCD6E2D726BC30F /* Pods-TalkinToTheNet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TalkinToTheNet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TalkinToTheNet/Pods-TalkinToTheNet.debug.xcconfig"; sourceTree = "<group>"; };
+		D0C3C9C8BE7B790D4EA3E92E /* Pods-TalkinToTheNet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TalkinToTheNet.release.xcconfig"; path = "Pods/Target Support Files/Pods-TalkinToTheNet/Pods-TalkinToTheNet.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,17 +46,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE04C3D1E5518055D4B76440 /* libPods-TalkinToTheNet.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0795E36FFBC8451E2FF0F4A8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				37904BB1087F2E6E22DA4EFC /* libPods-TalkinToTheNet.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8D7DCD3D1BAF859400A92AD2 = {
 			isa = PBXGroup;
 			children = (
 				8D7DCD481BAF859400A92AD2 /* TalkinToTheNet */,
 				8D7DCD471BAF859400A92AD2 /* Products */,
+				BE6FBB787B076B1E061E9E6C /* Pods */,
+				0795E36FFBC8451E2FF0F4A8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,6 +90,8 @@
 				9AED01521BAFB1E5007542DC /* SearchResults.m */,
 				9AE948411BAF95A300787EA3 /* SearchLocationViewController.h */,
 				9AE948421BAF95A300787EA3 /* SearchLocationViewController.m */,
+				9A880C4A1BB1B86C0096C660 /* GoogleMapsViewController.h */,
+				9A880C4B1BB1B86C0096C660 /* GoogleMapsViewController.m */,
 				8D7DCD521BAF859400A92AD2 /* Main.storyboard */,
 				8D7DCD551BAF859400A92AD2 /* Assets.xcassets */,
 				8D7DCD571BAF859400A92AD2 /* LaunchScreen.storyboard */,
@@ -89,6 +109,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		BE6FBB787B076B1E061E9E6C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C3F4742B6FCD6E2D726BC30F /* Pods-TalkinToTheNet.debug.xcconfig */,
+				D0C3C9C8BE7B790D4EA3E92E /* Pods-TalkinToTheNet.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -96,9 +125,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8D7DCD5D1BAF859400A92AD2 /* Build configuration list for PBXNativeTarget "TalkinToTheNet" */;
 			buildPhases = (
+				C87DE72BAE5D8F83DA7C75DD /* Check Pods Manifest.lock */,
 				8D7DCD421BAF859400A92AD2 /* Sources */,
 				8D7DCD431BAF859400A92AD2 /* Frameworks */,
 				8D7DCD441BAF859400A92AD2 /* Resources */,
+				5401C8E249C8FE2875BEE277 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -154,6 +185,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5401C8E249C8FE2875BEE277 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TalkinToTheNet/Pods-TalkinToTheNet-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C87DE72BAE5D8F83DA7C75DD /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8D7DCD421BAF859400A92AD2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -163,6 +227,7 @@
 				8D7DCD4E1BAF859400A92AD2 /* AppDelegate.m in Sources */,
 				9AED01531BAFB1E6007542DC /* SearchResults.m in Sources */,
 				9AE948431BAF95A300787EA3 /* SearchLocationViewController.m in Sources */,
+				9A880C4C1BB1B86C0096C660 /* GoogleMapsViewController.m in Sources */,
 				8D7DCD4B1BAF859400A92AD2 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -271,6 +336,7 @@
 		};
 		8D7DCD5E1BAF859400A92AD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C3F4742B6FCD6E2D726BC30F /* Pods-TalkinToTheNet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TalkinToTheNet/Info.plist;
@@ -283,6 +349,7 @@
 		};
 		8D7DCD5F1BAF859400A92AD2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0C3C9C8BE7B790D4EA3E92E /* Pods-TalkinToTheNet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TalkinToTheNet/Info.plist;
