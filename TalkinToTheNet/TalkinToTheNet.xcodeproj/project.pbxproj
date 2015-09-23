@@ -13,6 +13,7 @@
 		8D7DCD561BAF859400A92AD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D7DCD551BAF859400A92AD2 /* Assets.xcassets */; };
 		8D7DCD591BAF859400A92AD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D7DCD571BAF859400A92AD2 /* LaunchScreen.storyboard */; };
 		9A880C4C1BB1B86C0096C660 /* GoogleMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A880C4B1BB1B86C0096C660 /* GoogleMapsViewController.m */; settings = {ASSET_TAGS = (); }; };
+		9A880C4E1BB1D97E0096C660 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A880C4D1BB1D97E0096C660 /* CoreLocation.framework */; };
 		9AE948401BAF931400787EA3 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE9483F1BAF931400787EA3 /* APIManager.m */; settings = {ASSET_TAGS = (); }; };
 		9AE948431BAF95A300787EA3 /* SearchLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE948421BAF95A300787EA3 /* SearchLocationViewController.m */; settings = {ASSET_TAGS = (); }; };
 		9AED01531BAFB1E6007542DC /* SearchResults.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AED01521BAFB1E5007542DC /* SearchResults.m */; settings = {ASSET_TAGS = (); }; };
@@ -31,6 +32,7 @@
 		8D7DCD5A1BAF859400A92AD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A880C4A1BB1B86C0096C660 /* GoogleMapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleMapsViewController.h; sourceTree = "<group>"; };
 		9A880C4B1BB1B86C0096C660 /* GoogleMapsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleMapsViewController.m; sourceTree = "<group>"; };
+		9A880C4D1BB1D97E0096C660 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9AE9483E1BAF931400787EA3 /* APIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
 		9AE9483F1BAF931400787EA3 /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		9AE948411BAF95A300787EA3 /* SearchLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLocationViewController.h; sourceTree = "<group>"; };
@@ -46,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A880C4E1BB1D97E0096C660 /* CoreLocation.framework in Frameworks */,
 				BE04C3D1E5518055D4B76440 /* libPods-TalkinToTheNet.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -56,6 +59,7 @@
 		0795E36FFBC8451E2FF0F4A8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A880C4D1BB1D97E0096C660 /* CoreLocation.framework */,
 				37904BB1087F2E6E22DA4EFC /* libPods-TalkinToTheNet.a */,
 			);
 			name = Frameworks;
@@ -151,6 +155,7 @@
 				TargetAttributes = {
 					8D7DCD451BAF859400A92AD2 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = Z368FJ9ZFJ;
 					};
 				};
 			};
@@ -339,11 +344,15 @@
 			baseConfigurationReference = C3F4742B6FCD6E2D726BC30F /* Pods-TalkinToTheNet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TalkinToTheNet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mikekavouras.TalkinToTheNet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -352,11 +361,15 @@
 			baseConfigurationReference = D0C3C9C8BE7B790D4EA3E92E /* Pods-TalkinToTheNet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TalkinToTheNet/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mikekavouras.TalkinToTheNet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -104,8 +104,48 @@
                     <view key="view" contentMode="scaleToFill" id="WaT-PL-k4T">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="asX-W2-4T8">
+                                <rect key="frame" x="0.0" y="550" width="600" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Gz5-73-d3M"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem style="plain" id="vDW-4I-miI">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="5eZ-fQ-6Jy">
+                                            <rect key="frame" x="20" y="10" width="296" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="Standard"/>
+                                                <segment title="Satellite"/>
+                                                <segment title="Hybrid"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="setMapType:" destination="oBo-P0-9tr" eventType="valueChanged" id="h10-eC-Edl"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NZx-Ic-22P" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="64" width="600" height="486"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="asX-W2-4T8" secondAttribute="trailing" id="9mH-Ju-IV7"/>
+                            <constraint firstItem="asX-W2-4T8" firstAttribute="top" secondItem="NZx-Ic-22P" secondAttribute="bottom" id="FvK-wc-b4x"/>
+                            <constraint firstItem="asX-W2-4T8" firstAttribute="leading" secondItem="WaT-PL-k4T" secondAttribute="leading" id="Mer-oK-HMI"/>
+                            <constraint firstItem="QoW-qq-eUu" firstAttribute="top" secondItem="asX-W2-4T8" secondAttribute="bottom" id="Oii-dA-Ygz"/>
+                            <constraint firstAttribute="trailing" secondItem="NZx-Ic-22P" secondAttribute="trailing" id="SXa-FP-Cyh"/>
+                            <constraint firstItem="NZx-Ic-22P" firstAttribute="top" secondItem="N7r-pq-n3r" secondAttribute="bottom" id="hOc-di-c71"/>
+                            <constraint firstItem="NZx-Ic-22P" firstAttribute="leading" secondItem="WaT-PL-k4T" secondAttribute="leading" id="meg-ac-iN8"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="googleMapsView" destination="NZx-Ic-22P" id="MsM-Xf-9ax"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z7m-DQ-47y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -7,52 +7,80 @@
 //
 
 #import "GoogleMapsViewController.h"
+#import <CoreLocation/CoreLocation.h>
 @import GoogleMaps;
 
-@interface GoogleMapsViewController ()
+@interface GoogleMapsViewController () <GMSMapViewDelegate, CLLocationManagerDelegate>
+
+
+@property (strong, nonatomic) IBOutlet GMSMapView *googleMapsView;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
 
-@implementation GoogleMapsViewController {
-    GMSMapView *mapView;
-}
+@implementation GoogleMapsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     // Create a GMSCameraPosition that tells the map to display the
     // coordinate -33.86,151.20 at zoom level 6.
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.86
-                                                            longitude:151.20
-                                                                 zoom:6];
-    mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-    mapView.myLocationEnabled = YES;
-    self.view = mapView;
+    //self.googleMapsView = [GMSMapView mapWithFrame:self.googleMapsView.bounds camera:camera];
+
+    
+    self.googleMapsView.delegate = self;
+
+    
+    self.locationManager = [[CLLocationManager alloc]init];
+    self.locationManager.delegate = self;
+    
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]){
+        [self.locationManager requestWhenInUseAuthorization];
+        [self.locationManager requestAlwaysAuthorization];
+    }
+    [self.locationManager startUpdatingLocation];
+    self.locationManager.distanceFilter = kCLDistanceFilterNone;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    
+    NSLog(@"coordinates: %.2f, %.2f",self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude);
+    
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.71//self.locationManager.location.coordinate.latitude
+                                                            longitude:-74.00//self.locationManager.location.coordinate.longitude
+                                                                 zoom:10];
+    NSLog(@"camera: %@",camera);
+
+    [self.googleMapsView animateToCameraPosition:camera];
+    
+    //self.mapView = googleMapsView;
+
+    self.googleMapsView.myLocationEnabled = YES;
+    self.googleMapsView.settings.myLocationButton = YES;
+    self.googleMapsView.settings.zoomGestures = YES;
+    self.googleMapsView.settings.compassButton = YES;
     
     // Creates a marker in the center of the map.
-    GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = CLLocationCoordinate2DMake(-33.86, 151.20);
-    marker.title = @"Sydney";
-    marker.snippet = @"Australia";
-    marker.map = mapView;
-
-
+//    GMSMarker *marker = [[GMSMarker alloc] init];
+//    marker.position = CLLocationCoordinate2DMake(-33.86, 151.20);
+//    marker.title = @"Sydney";
+//    marker.snippet = @"Australia";
+//    marker.map = self.googleMapsView;
 
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)setMapType:(id)sender {
+    
+    switch (((UISegmentedControl *)sender).selectedSegmentIndex) {
+        case 0:
+            self.googleMapsView.mapType = kGMSTypeNormal;
+            break;
+        case 1:
+            self.googleMapsView.mapType = kGMSTypeSatellite;
+            break;
+        case 2:
+            self.googleMapsView.mapType = kGMSTypeTerrain;
+            break;
+        default:
+            break;
+    }
+    
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end
