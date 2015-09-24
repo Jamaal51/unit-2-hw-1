@@ -39,7 +39,9 @@ CLLocationManagerDelegate
     self.searchTextField.delegate = self;
     
     //instantiate CLLocation
+    if (self.locationManager == nil){
     self.locationManager = [[CLLocationManager alloc]init];
+    }
     self.locationManager.delegate = self;
     
     //mandatory check
@@ -66,6 +68,7 @@ CLLocationManagerDelegate
                                      callbackBlock:(void(^)())block{
     
     //1.searchTerm - comes from our parameter
+    
     //2. url (media=music, term=searchTerm)
     NSString *urlString = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?client_id=QSKOZ40KOU52BNTD0VMXIXHAKOCN0JPI1L4HUCLJXLCCCJ2X&client_secret=HBVWRR33ZVW44AUW21RYONHBPYR5KVMN000JQVV4F1HEWAMN&v=20150919&%@&query=%@",self.ourLocationString,searchTerm];
     

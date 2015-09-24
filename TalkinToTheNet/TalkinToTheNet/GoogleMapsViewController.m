@@ -12,13 +12,22 @@
 
 @import GoogleMaps;
 
-@interface GoogleMapsViewController () <GMSMapViewDelegate, CLLocationManagerDelegate>
-
+@interface GoogleMapsViewController ()
+<
+GMSMapViewDelegate,
+CLLocationManagerDelegate,
+UITableViewDataSource,
+UITableViewDelegate
+>
 
 @property (strong, nonatomic) IBOutlet GMSMapView *googleMapsView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) NSString *origin;
 @property (nonatomic) NSString *destination;
+@property (nonatomic) NSArray *steps;
+@property (nonatomic) GMSPolyline *polyline;
+@property (nonatomic) NSMutableArray *directionsArray;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -27,6 +36,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     
     double latDouble = [self.targetLocation.lat doubleValue];
     double lngDouble = [self.targetLocation.lng doubleValue];
@@ -35,16 +46,17 @@
     CLLocationDegrees longitude = lngDouble;
     
     self.destination = [NSString stringWithFormat:@"%f,%f",latDouble,lngDouble];
-    
-    //pass data
-    //NSLog(@"name:%@ location:%@ lat:%@ lng:%@",self.targetLocation.name, self.targetLocation.location, self.targetLocation.lat, self.targetLocation.lng);
 
     //call self as delegate
     self.googleMapsView.delegate = self;
 
     //instantiate CLLocation
+    
+    if (self.locationManager == nil){
     self.locationManager = [[CLLocationManager alloc]init];
+    }
     self.locationManager.delegate = self;
+    //[self.locationManager requestLocation];
     
     //mandatory check
     if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]){
@@ -132,18 +144,91 @@
         default:
             break;
     }
-    
 }
 
-- (void)makeNewBikeDirectionsAPIRequest {
+- (void)makeNewBikeDirectionsAPIRequest:(void(^)())block {
     
     NSLog(@"orgin:%@, destination:%@", self.origin, self.destination);
     
+    NSString *urlString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/directions/json?origin=%@&destination=%@&mode=bicycling&sensor=true&key=AIzaSyAd1r6-rsY8RMiF4iXNjoF9quj999DSiaQ",self.origin,self.destination];
+    
+    NSString *encodedString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    
+    NSLog(@"%@", encodedString);
+    
+    NSURL *url = [NSURL URLWithString:encodedString];
+
+    [APIManager GETRequestWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if  (data!=nil){
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
+                                                                 options:0
+                                                                   error:nil];
+            //NSLog(@"%@",json);
+            
+            if (!error){
+                self.steps = json[@"routes"][0][@"legs"][0][@"steps"];
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                //NSLog(@"Path Steps: %@",self.steps);
+                    
+                    self.directionsArray = [[NSMutableArray alloc]init];
+                    
+                    //get directions in array to present in tableview
+                    
+                    for (NSDictionary *step in self.steps){
+                        NSString *htmlInstructions = [step objectForKey:@"html_instructions"];
+                        [self.directionsArray addObject:htmlInstructions];
+                    }
+                   
+                   NSLog(@"directions array: %@", self.directionsArray);
+                
+                    
+                    GMSPath *path =[GMSPath pathFromEncodedPath:
+                     json[@"routes"][0][@"overview_polyline"][@"points"]];
+                    self.polyline = [GMSPolyline polylineWithPath:path];
+                    self.polyline.strokeWidth = 7;
+                    self.polyline.strokeColor = [UIColor greenColor];
+                    self.polyline.map = self.googleMapsView;
+                    
+                    block ();
+                    
+                }];
+            }
+            
+        }}];
 }
 
 - (IBAction)getBikeDirectionsFromApi:(UIButton *)sender {
     
-    [self makeNewBikeDirectionsAPIRequest];
+    [self makeNewBikeDirectionsAPIRequest:^{
+        [self.tableView reloadData];
+        NSLog(@"block works");
+    }];
+    
+    
     
 }
+
+# pragma mark tableview delegates
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.directionsArray.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
+    
+    //cell.textLabel.text = @"working";
+    
+    //NSString *firstString = [self.directionsArray firstObject];
+    
+    cell.textLabel.text = [self.directionsArray objectAtIndex:indexPath.row];
+    
+    return cell;
+}
+
 @end

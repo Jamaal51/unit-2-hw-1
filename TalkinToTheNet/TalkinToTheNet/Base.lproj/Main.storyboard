@@ -135,10 +135,10 @@
                                 <rect key="frame" x="0.0" y="307" width="600" height="243"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48X-bj-Pns">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
                                         <color key="backgroundColor" red="0.25790398980000001" green="0.78102093939999995" blue="0.214745933" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="XJw-lM-U89"/>
+                                            <constraint firstAttribute="height" constant="40" id="XJw-lM-U89"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <state key="normal" title="BIKE IT!">
@@ -148,13 +148,31 @@
                                             <action selector="getBikeDirectionsFromApi:" destination="oBo-P0-9tr" eventType="touchUpInside" id="wZu-QD-DdX"/>
                                         </connections>
                                     </button>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1Ve-LU-oh8">
+                                        <rect key="frame" x="0.0" y="40" width="600" height="203"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CellIdentifier" id="GUZ-uI-SGf">
+                                                <rect key="frame" x="0.0" y="28" width="600" height="40"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GUZ-uI-SGf" id="e6G-AX-KcH">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="39"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="48X-bj-Pns" secondAttribute="trailing" id="05M-5l-zrE"/>
+                                    <constraint firstAttribute="trailing" secondItem="1Ve-LU-oh8" secondAttribute="trailing" id="40C-l5-Tca"/>
                                     <constraint firstItem="48X-bj-Pns" firstAttribute="top" secondItem="p8H-yv-Y9X" secondAttribute="top" id="Aeu-hP-XNv"/>
                                     <constraint firstItem="48X-bj-Pns" firstAttribute="leading" secondItem="p8H-yv-Y9X" secondAttribute="leading" id="ObA-oi-COe"/>
+                                    <constraint firstItem="1Ve-LU-oh8" firstAttribute="top" secondItem="48X-bj-Pns" secondAttribute="bottom" id="ige-lc-dkW"/>
+                                    <constraint firstItem="1Ve-LU-oh8" firstAttribute="leading" secondItem="p8H-yv-Y9X" secondAttribute="leading" id="muL-KQ-xvZ"/>
                                     <constraint firstAttribute="height" constant="200" id="qH9-19-9bB"/>
+                                    <constraint firstAttribute="bottom" secondItem="1Ve-LU-oh8" secondAttribute="bottom" id="yil-4z-t45"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -187,6 +205,7 @@
                     </view>
                     <connections>
                         <outlet property="googleMapsView" destination="NZx-Ic-22P" id="MsM-Xf-9ax"/>
+                        <outlet property="tableView" destination="1Ve-LU-oh8" id="jvc-KB-Nua"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z7m-DQ-47y" userLabel="First Responder" sceneMemberID="firstResponder"/>
