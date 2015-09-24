@@ -13,5 +13,9 @@
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSString *url;
 @property (nonatomic) NSString *location;
+@property (nonatomic) NSString *streetAddressSnippet;
+@property (nonatomic) NSString *lat;
+@property (nonatomic) NSString *lng;
+@property (nonatomic) NSArray *fullAddress;
 
 @end

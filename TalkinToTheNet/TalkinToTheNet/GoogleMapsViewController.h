@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SearchResults.h"
 
 @interface GoogleMapsViewController : UIViewController
+
+@property (nonatomic) SearchResults *targetLocation;
 
 @end

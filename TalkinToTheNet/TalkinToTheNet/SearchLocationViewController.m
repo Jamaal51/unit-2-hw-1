@@ -9,18 +9,23 @@
 #import "SearchLocationViewController.h"
 #import "APIManager.h"
 #import "SearchResults.h"
+#import <CoreLocation/CoreLocation.h>
+#import "GoogleMapsViewController.h"
 
 @interface SearchLocationViewController ()
 <
 UITableViewDataSource,
 UITableViewDelegate,
-UITextFieldDelegate
+UITextFieldDelegate,
+CLLocationManagerDelegate
 >
 
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic) NSMutableArray *searchResults;
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (nonatomic) NSString *ourLocationString;
 
 @end
 
@@ -33,6 +38,26 @@ UITextFieldDelegate
     self.tableView.dataSource = self;
     self.searchTextField.delegate = self;
     
+    //instantiate CLLocation
+    self.locationManager = [[CLLocationManager alloc]init];
+    self.locationManager.delegate = self;
+    
+    //mandatory check
+    if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]){
+        [self.locationManager requestAlwaysAuthorization];
+    }
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]){
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    
+    [self.locationManager startUpdatingLocation];
+    self.locationManager.distanceFilter = kCLDistanceFilterNone;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    
+    self.ourLocationString = [NSString stringWithFormat:@"ll=%f,%f",self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude];
+    
+    NSLog(@"our location: %@",self.ourLocationString);
+    
 }
 
 #pragma mark API method
@@ -42,7 +67,9 @@ UITextFieldDelegate
     
     //1.searchTerm - comes from our parameter
     //2. url (media=music, term=searchTerm)
-    NSString *urlString = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?client_id=QSKOZ40KOU52BNTD0VMXIXHAKOCN0JPI1L4HUCLJXLCCCJ2X&client_secret=HBVWRR33ZVW44AUW21RYONHBPYR5KVMN000JQVV4F1HEWAMN&v=20150919&ll=40.7,-74&query=%@",searchTerm];
+    NSString *urlString = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?client_id=QSKOZ40KOU52BNTD0VMXIXHAKOCN0JPI1L4HUCLJXLCCCJ2X&client_secret=HBVWRR33ZVW44AUW21RYONHBPYR5KVMN000JQVV4F1HEWAMN&v=20150919&%@&query=%@",self.ourLocationString,searchTerm];
+    
+    //ll=40.714167,-74.006389
     
     //
     //https://api.foursquare.com/v2/venues/search
@@ -64,11 +91,11 @@ UITextFieldDelegate
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
                                                                  options:0
                                                                    error:nil];
-            //  NSLog(@"%@",json);
+            //NSLog(@"%@",json);
             
             NSArray *venues = [[json objectForKey:@"response"] objectForKey:@"venues"];
             
-            // NSLog(@"%@",venues);
+            //NSLog(@"%@",venues);
             
             self.searchResults = [[NSMutableArray alloc]init];
             
@@ -77,23 +104,30 @@ UITextFieldDelegate
                 NSString *venueName = [venue objectForKey:@"name"];
                 NSString *venueURL = [venue objectForKey:@"url"];
                 NSDictionary *venueLoc = [venue objectForKey:@"location"];
+                NSString *venueStreetAddress = [venueLoc valueForKey:@"address"];
+                NSString *venueCity = [venueLoc valueForKey:@"city"];
+                NSArray *venueFullAddress = [venue valueForKey:@"formattedAddress"];
+                NSString *venueLat = [venueLoc valueForKey:@"lat"];
+                NSString *venueLng = [venueLoc valueForKey:@"lng"];
+            
+                //NSLog(@"lat: %@ lng; %@",lat,lng);
                 
-                NSString *address = [venueLoc valueForKey:@"address"];
-                NSString *city = [venueLoc valueForKey:@"city"];
-                
-                if (address == nil){
-                    address = @"";
+                if (venueStreetAddress == nil){
+                    venueStreetAddress = @"";
                 }
-                if (city == nil){
-                    city = @"";
+                if (venueCity == nil){
+                    venueCity = @"";
                 }
                 
                 SearchResults *resultsObject = [[SearchResults alloc]init];
                 
                 resultsObject.name = venueName;
                 resultsObject.url = venueURL;
-                
-                resultsObject.location = [NSString stringWithFormat:@"%@ %@",address,city];
+                resultsObject.location = [NSString stringWithFormat:@"%@ %@",venueStreetAddress,venueCity];
+                resultsObject.lat = venueLat;
+                resultsObject.lng = venueLng;
+                resultsObject.fullAddress = venueFullAddress;
+                resultsObject.streetAddressSnippet = venueStreetAddress;
                 
                 [self.searchResults addObject:resultsObject];
                 
@@ -141,6 +175,21 @@ UITextFieldDelegate
     cell.detailTextLabel.text = currentResult.location;
     
     return cell;
+}
+#pragma mark segue methods
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    
+    SearchResults *selectedTarget = self.searchResults[indexPath.row];
+    
+    GoogleMapsViewController *viewController = segue.destinationViewController;
+    
+    viewController.targetLocation = selectedTarget;
+    
+    
+    
 }
 
 

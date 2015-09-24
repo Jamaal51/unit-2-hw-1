@@ -112,8 +112,8 @@
                                 </constraints>
                                 <items>
                                     <barButtonItem style="plain" id="vDW-4I-miI">
-                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="5eZ-fQ-6Jy">
-                                            <rect key="frame" x="20" y="10" width="296" height="30"/>
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="5eZ-fQ-6Jy">
+                                            <rect key="frame" x="20" y="10" width="328" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
                                                 <segment title="Standard"/>
@@ -128,20 +128,62 @@
                                 </items>
                             </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NZx-Ic-22P" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="64" width="600" height="486"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="243"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p8H-yv-Y9X">
+                                <rect key="frame" x="0.0" y="307" width="600" height="243"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48X-bj-Pns">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                        <color key="backgroundColor" red="0.25790398980000001" green="0.78102093939999995" blue="0.214745933" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="XJw-lM-U89"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="BIKE IT!">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="getBikeDirectionsFromApi:" destination="oBo-P0-9tr" eventType="touchUpInside" id="wZu-QD-DdX"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="48X-bj-Pns" secondAttribute="trailing" id="05M-5l-zrE"/>
+                                    <constraint firstItem="48X-bj-Pns" firstAttribute="top" secondItem="p8H-yv-Y9X" secondAttribute="top" id="Aeu-hP-XNv"/>
+                                    <constraint firstItem="48X-bj-Pns" firstAttribute="leading" secondItem="p8H-yv-Y9X" secondAttribute="leading" id="ObA-oi-COe"/>
+                                    <constraint firstAttribute="height" constant="200" id="qH9-19-9bB"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="qH9-19-9bB"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="p8H-yv-Y9X" firstAttribute="top" secondItem="NZx-Ic-22P" secondAttribute="bottom" id="0If-h2-2ge"/>
+                            <constraint firstAttribute="trailing" secondItem="p8H-yv-Y9X" secondAttribute="trailing" id="0V8-lE-eaS"/>
+                            <constraint firstItem="p8H-yv-Y9X" firstAttribute="leading" secondItem="WaT-PL-k4T" secondAttribute="leading" id="2oB-mX-gBw"/>
                             <constraint firstAttribute="trailing" secondItem="asX-W2-4T8" secondAttribute="trailing" id="9mH-Ju-IV7"/>
                             <constraint firstItem="asX-W2-4T8" firstAttribute="top" secondItem="NZx-Ic-22P" secondAttribute="bottom" id="FvK-wc-b4x"/>
+                            <constraint firstItem="p8H-yv-Y9X" firstAttribute="top" secondItem="NZx-Ic-22P" secondAttribute="bottom" id="IXt-yR-lxD"/>
                             <constraint firstItem="asX-W2-4T8" firstAttribute="leading" secondItem="WaT-PL-k4T" secondAttribute="leading" id="Mer-oK-HMI"/>
                             <constraint firstItem="QoW-qq-eUu" firstAttribute="top" secondItem="asX-W2-4T8" secondAttribute="bottom" id="Oii-dA-Ygz"/>
                             <constraint firstAttribute="trailing" secondItem="NZx-Ic-22P" secondAttribute="trailing" id="SXa-FP-Cyh"/>
+                            <constraint firstItem="asX-W2-4T8" firstAttribute="top" secondItem="p8H-yv-Y9X" secondAttribute="bottom" id="aBk-dO-8u8"/>
                             <constraint firstItem="NZx-Ic-22P" firstAttribute="top" secondItem="N7r-pq-n3r" secondAttribute="bottom" id="hOc-di-c71"/>
                             <constraint firstItem="NZx-Ic-22P" firstAttribute="leading" secondItem="WaT-PL-k4T" secondAttribute="leading" id="meg-ac-iN8"/>
+                            <constraint firstItem="p8H-yv-Y9X" firstAttribute="height" secondItem="NZx-Ic-22P" secondAttribute="height" id="sZz-gi-Rft"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="FvK-wc-b4x"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="googleMapsView" destination="NZx-Ic-22P" id="MsM-Xf-9ax"/>
