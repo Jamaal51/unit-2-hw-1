@@ -251,7 +251,7 @@ UITableViewDelegate
         
         //// STREET VIEW ////
         
-            NSString *streetViewString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/streetview?size=600x300&location=%@&heading=151.78&pitch=-0.76&key=AIzaSyAd1r6-rsY8RMiF4iXNjoF9quj999DSiaQ",self.destination];
+            NSString *streetViewString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/streetview?size=600x300&location=%@&heading=151.78&pitch=-0.76&key=AIzaSyCq4H2uogQKakpQqW7ksujGtqlYK7fIYIY",self.destination];
         
             NSLog(@"Street View String: %@",streetViewString);
         
@@ -265,7 +265,7 @@ UITableViewDelegate
                                                                        options:0
                                                                          error:nil];
                 
-                //NSLog(@"Street View json: %@",svJson);
+                NSLog(@"Street View json: %@",svJson);
             }];
         
         [self.tableView reloadData];
