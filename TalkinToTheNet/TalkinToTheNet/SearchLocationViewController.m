@@ -45,7 +45,8 @@ CLLocationManagerDelegate
     }
     self.locationManager.delegate = self;
     
-    //mandatory check
+    //mandatory check http://stackoverflow.com/questions/24062509/location-services-not-working-in-ios-8
+    
     if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]){
         [self.locationManager requestAlwaysAuthorization];
     }
@@ -59,7 +60,8 @@ CLLocationManagerDelegate
     
     self.ourLocationString = [NSString stringWithFormat:@"ll=%f,%f",self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude];
     
-    NSLog(@"our location: %@",self.ourLocationString);
+    NSLog(@"our current location: %@",self.ourLocationString);
+    NSLog(@"***if current location shows ll=0,0 then check simulator***");
     
 }
 

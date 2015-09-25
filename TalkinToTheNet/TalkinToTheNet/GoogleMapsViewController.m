@@ -288,6 +288,9 @@ UITableViewDelegate
         
         self.tableView.alpha = 1.0;
         
+        self.googleMapsView.layer.borderWidth = 1.0f;
+        self.googleMapsView.layer.borderColor = [UIColor blueColor].CGColor;
+        
        //self.bikeItButton.titleLabel.text = [NSString stringWithFormat:@"Total Distance: %@ Total Travel Time: %@",self.totalDistance,self.totalDuration];
         
         [self.bikeItButton setTitle:[NSString stringWithFormat:@"Total Distance: %@  Total Travel Time: %@",self.totalDistance,self.totalDuration] forState:UIControlStateNormal];
