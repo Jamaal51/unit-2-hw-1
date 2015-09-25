@@ -53,6 +53,8 @@ UITableViewDelegate
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    self.tableView.alpha = 0.7;
+    
     self.bikeItButton.userInteractionEnabled = YES;
     
     double latDouble = [self.targetLocation.lat doubleValue];
@@ -283,6 +285,8 @@ UITableViewDelegate
 //            }];
         
         [self.tableView reloadData];
+        
+        self.tableView.alpha = 1.0;
         
        //self.bikeItButton.titleLabel.text = [NSString stringWithFormat:@"Total Distance: %@ Total Travel Time: %@",self.totalDistance,self.totalDuration];
         
