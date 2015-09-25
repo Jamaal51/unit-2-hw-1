@@ -19,6 +19,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    //required by GoogleMaps to activate the GoogleMaps in app
+    
     [GMSServices provideAPIKey:@"AIzaSyD_aWPl5L63pZsRhGNjfyBkBcLQzi6B81I"];
     
     return YES;

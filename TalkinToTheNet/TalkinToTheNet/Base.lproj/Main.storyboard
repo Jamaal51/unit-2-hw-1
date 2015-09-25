@@ -130,13 +130,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p8H-yv-Y9X">
                                 <rect key="frame" x="0.0" y="307" width="600" height="243"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48X-bj-Pns">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="48X-bj-Pns">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
                                         <color key="backgroundColor" red="0.25790398980000001" green="0.78102093939999995" blue="0.214745933" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="XJw-lM-U89"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                         <state key="normal" title="BIKE IT!">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -280,6 +280,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="bikeItButton" destination="48X-bj-Pns" id="mM6-PH-jX9"/>
                         <outlet property="googleMapsView" destination="NZx-Ic-22P" id="MsM-Xf-9ax"/>
                         <outlet property="tableView" destination="1Ve-LU-oh8" id="jvc-KB-Nua"/>
                     </connections>

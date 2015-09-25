@@ -31,6 +31,7 @@ CLLocationManagerDelegate
 
 @implementation SearchLocationViewController
 
+#pragma mark Build Map
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -72,9 +73,10 @@ CLLocationManagerDelegate
     //2. url (media=music, term=searchTerm)
     NSString *urlString = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?client_id=QSKOZ40KOU52BNTD0VMXIXHAKOCN0JPI1L4HUCLJXLCCCJ2X&client_secret=HBVWRR33ZVW44AUW21RYONHBPYR5KVMN000JQVV4F1HEWAMN&v=20150919&%@&query=%@",self.ourLocationString,searchTerm];
     
-    //ll=40.714167,-74.006389
+    // NY lat,lng
+    // ll=40.714167,-74.006389
     
-    //
+    // Foursquare API formula
     //https://api.foursquare.com/v2/venues/search
     //    ?client_id=CLIENT_ID
     //    &client_secret=CLIENT_SECRET
@@ -179,6 +181,7 @@ CLLocationManagerDelegate
     
     return cell;
 }
+
 #pragma mark segue methods
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

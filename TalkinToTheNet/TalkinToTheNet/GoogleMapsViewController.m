@@ -30,7 +30,10 @@ UITableViewDelegate
 @property (nonatomic) GMSPolyline *polyline;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UIButton *bikeItButton;
 
+@property (nonatomic) NSString *totalDistance;
+@property (nonatomic) NSString *totalDuration;
 @property (nonatomic) NSMutableArray *directionsArray;
 @property (nonatomic) NSMutableArray *distanceArray;
 @property (nonatomic) NSMutableArray *durationArray;
@@ -42,11 +45,15 @@ UITableViewDelegate
 
 @implementation GoogleMapsViewController
 
+#pragma mark Map Build
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    self.bikeItButton.userInteractionEnabled = YES;
     
     double latDouble = [self.targetLocation.lat doubleValue];
     double lngDouble = [self.targetLocation.lng doubleValue];
@@ -155,6 +162,8 @@ UITableViewDelegate
     }
 }
 
+# pragma mark API Request Methods
+
 - (void)makeNewBikeDirectionsAPIRequest:(void(^)())block {
     
     NSLog(@"orgin:%@, destination:%@", self.origin, self.destination);
@@ -185,12 +194,18 @@ UITableViewDelegate
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
                                                                  options:0
                                                                    error:nil];
-            //NSLog(@"%@",json);
+            NSLog(@"%@",json);
             
             if (!error){
                 self.steps = json[@"routes"][0][@"legs"][0][@"steps"];
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    NSLog(@"Path Steps: %@",self.steps);
+                    //NSLog(@"Path Steps: %@",self.steps);
+                    
+                    self.totalDistance = json[@"routes"][0][@"legs"][0][@"distance"][@"text"];
+                    self.totalDuration = json[@"routes"][0][@"legs"][0][@"duration"][@"text"];
+                    
+                    NSLog(@"total distance: %@",self.totalDistance);
+                    NSLog(@"total duration: %@",self.totalDuration);
                     
                     self.directionsArray = [[NSMutableArray alloc]init];
                     self.numberArray = [[NSMutableArray alloc]init];
@@ -199,8 +214,9 @@ UITableViewDelegate
                     self.maneuverArray = [[NSMutableArray alloc]init];
                     NSInteger directionsCount = 0;
                     NSString *maneuver;
-                    //get directions in array to present in tableview
                     
+                    //get directions in array to present in tableview
+        
                     for (NSDictionary *step in self.steps){
                         NSString *htmlInstructions = [step objectForKey:@"html_instructions"];
                         NSString *distance = step[@"distance"][@"text"];
@@ -212,7 +228,7 @@ UITableViewDelegate
                         }
                         directionsCount++;
                         
-                        [self.directionsArray addObject:[htmlInstructions stringByStrippingHTML]];
+                        [self.directionsArray addObject:[htmlInstructions stringByStrippingHTML]]; //method created in NSString+NSString_Sanitize
                         [self.distanceArray addObject:distance];
                         [self.durationArray addObject:duration];
                         [self.maneuverArray addObject:maneuver];
@@ -245,30 +261,37 @@ UITableViewDelegate
 
 - (IBAction)getBikeDirectionsFromApi:(UIButton *)sender {
     
-    
-    
     [self makeNewBikeDirectionsAPIRequest:^{
         
         //// STREET VIEW ////
-        
-            NSString *streetViewString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/streetview?size=600x300&location=%@&heading=151.78&pitch=-0.76&key=AIzaSyCq4H2uogQKakpQqW7ksujGtqlYK7fIYIY",self.destination];
-        
-            NSLog(@"Street View String: %@",streetViewString);
-        
-            NSString *encodedStreetViewString = [streetViewString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-        
-            NSURL *streetViewURL = [NSURL URLWithString:encodedStreetViewString];
-        
-            [APIManager GETRequestWithURL:streetViewURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                
-                NSDictionary *svJson = [NSJSONSerialization JSONObjectWithData:data
-                                                                       options:0
-                                                                         error:nil];
-                
-                NSLog(@"Street View json: %@",svJson);
-            }];
+//        
+//            NSString *streetViewString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/streetview?size=600x300&location=%@&heading=151.78&pitch=-0.76&key=AIzaSyCq4H2uogQKakpQqW7ksujGtqlYK7fIYIY",self.destination];
+//        
+//            NSLog(@"Street View String: %@",streetViewString);
+//        
+//            NSString *encodedStreetViewString = [streetViewString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+//        
+//            NSURL *streetViewURL = [NSURL URLWithString:encodedStreetViewString];
+//        
+//            [APIManager GETRequestWithURL:streetViewURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+//                
+//                NSDictionary *svJson = [NSJSONSerialization JSONObjectWithData:data
+//                                                                       options:0
+//                                                                         error:nil];
+//                
+//                NSLog(@"Street View json: %@",svJson);
+//            }];
         
         [self.tableView reloadData];
+        
+       //self.bikeItButton.titleLabel.text = [NSString stringWithFormat:@"Total Distance: %@ Total Travel Time: %@",self.totalDistance,self.totalDuration];
+        
+        [self.bikeItButton setTitle:[NSString stringWithFormat:@"Total Distance: %@  Total Travel Time: %@",self.totalDistance,self.totalDuration] forState:UIControlStateNormal];
+        
+        [self.bikeItButton setBackgroundColor:[UIColor blueColor]];
+        
+        self.bikeItButton.userInteractionEnabled = NO;
+
         NSLog(@"block works");
     }];
     

@@ -92,20 +92,8 @@
 		8D7DCD481BAF859400A92AD2 /* TalkinToTheNet */ = {
 			isa = PBXGroup;
 			children = (
-				8D7DCD4C1BAF859400A92AD2 /* AppDelegate.h */,
-				8D7DCD4D1BAF859400A92AD2 /* AppDelegate.m */,
-				9AE9483E1BAF931400787EA3 /* APIManager.h */,
-				9AE9483F1BAF931400787EA3 /* APIManager.m */,
-				9AED01511BAFB1E5007542DC /* SearchResults.h */,
-				9AED01521BAFB1E5007542DC /* SearchResults.m */,
-				9A70E5BA1BB4FE28004FCED1 /* DirectionsTableViewCell.h */,
-				9A70E5BB1BB4FE28004FCED1 /* DirectionsTableViewCell.m */,
-				9A70E5B21BB4CE3B004FCED1 /* NSString+NSString_Sanitize.m */,
-				9A70E5B11BB4CE3B004FCED1 /* NSString+NSString_Sanitize.h */,
-				9AE948411BAF95A300787EA3 /* SearchLocationViewController.h */,
-				9AE948421BAF95A300787EA3 /* SearchLocationViewController.m */,
-				9A880C4A1BB1B86C0096C660 /* GoogleMapsViewController.h */,
-				9A880C4B1BB1B86C0096C660 /* GoogleMapsViewController.m */,
+				9A9E57B91BB58929004D2DEE /* Delegates + Classes */,
+				9A9E57BA1BB5896E004D2DEE /* View Controllers */,
 				8D7DCD521BAF859400A92AD2 /* Main.storyboard */,
 				8D7DCD551BAF859400A92AD2 /* Assets.xcassets */,
 				8D7DCD571BAF859400A92AD2 /* LaunchScreen.storyboard */,
@@ -121,6 +109,34 @@
 				8D7DCD4A1BAF859400A92AD2 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9A9E57B91BB58929004D2DEE /* Delegates + Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8D7DCD4C1BAF859400A92AD2 /* AppDelegate.h */,
+				8D7DCD4D1BAF859400A92AD2 /* AppDelegate.m */,
+				9AE9483E1BAF931400787EA3 /* APIManager.h */,
+				9AE9483F1BAF931400787EA3 /* APIManager.m */,
+				9AED01511BAFB1E5007542DC /* SearchResults.h */,
+				9AED01521BAFB1E5007542DC /* SearchResults.m */,
+				9A70E5BA1BB4FE28004FCED1 /* DirectionsTableViewCell.h */,
+				9A70E5BB1BB4FE28004FCED1 /* DirectionsTableViewCell.m */,
+				9A70E5B21BB4CE3B004FCED1 /* NSString+NSString_Sanitize.m */,
+				9A70E5B11BB4CE3B004FCED1 /* NSString+NSString_Sanitize.h */,
+			);
+			name = "Delegates + Classes";
+			sourceTree = "<group>";
+		};
+		9A9E57BA1BB5896E004D2DEE /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9AE948411BAF95A300787EA3 /* SearchLocationViewController.h */,
+				9AE948421BAF95A300787EA3 /* SearchLocationViewController.m */,
+				9A880C4A1BB1B86C0096C660 /* GoogleMapsViewController.h */,
+				9A880C4B1BB1B86C0096C660 /* GoogleMapsViewController.m */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		BE6FBB787B076B1E061E9E6C /* Pods */ = {
