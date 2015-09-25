@@ -182,16 +182,10 @@ CLLocationManagerDelegate
 #pragma mark segue methods
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    
     SearchResults *selectedTarget = self.searchResults[indexPath.row];
-    
     GoogleMapsViewController *viewController = segue.destinationViewController;
-    
     viewController.targetLocation = selectedTarget;
-    
-    
     
 }
 

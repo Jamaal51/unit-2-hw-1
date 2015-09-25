@@ -9,6 +9,7 @@
 #import "GoogleMapsViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import "APIManager.h"
+#import "NSString+NSString_Sanitize.h"
 
 @import GoogleMaps;
 
@@ -46,14 +47,14 @@ UITableViewDelegate
     CLLocationDegrees longitude = lngDouble;
     
     self.destination = [NSString stringWithFormat:@"%f,%f",latDouble,lngDouble];
-
+    
     //call self as delegate
     self.googleMapsView.delegate = self;
-
+    
     //instantiate CLLocation
     
     if (self.locationManager == nil){
-    self.locationManager = [[CLLocationManager alloc]init];
+        self.locationManager = [[CLLocationManager alloc]init];
     }
     self.locationManager.delegate = self;
     //[self.locationManager requestLocation];
@@ -65,7 +66,7 @@ UITableViewDelegate
     if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]){
         [self.locationManager requestWhenInUseAuthorization];
     }
-        
+    
     [self.locationManager startUpdatingLocation];
     self.locationManager.distanceFilter = kCLDistanceFilterNone;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -82,15 +83,15 @@ UITableViewDelegate
     //self.origin = [NSString stringWithFormat:@"%f,%f",self.locationManager.location.coordinat]
     
     //creates camera that points to location on map
-//    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.71//self.locationManager.location.coordinate.latitude
-//                                                            longitude:-74.00//self.locationManager.location.coordinate.longitude
-//                                                                 zoom:10];
+    //    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:40.71//self.locationManager.location.coordinate.latitude
+    //                                                            longitude:-74.00//self.locationManager.location.coordinate.longitude
+    //                                                                 zoom:10];
     //NSLog(@"camera: %@",camera);
     
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude
                                                             longitude:longitude
                                                                  zoom:12];
-
+    
 
     [self.googleMapsView animateToCameraPosition:camera];
     
@@ -106,7 +107,7 @@ UITableViewDelegate
     self.googleMapsView.settings.zoomGestures = YES;
     [self.googleMapsView setMinZoom:8 maxZoom:16];
     
-//    // Creates a marker in the center of the map.
+    // Creates a marker in the center of the map.
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.position = CLLocationCoordinate2DMake(self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude);
     marker.title = @"You are here";
@@ -157,7 +158,19 @@ UITableViewDelegate
     NSLog(@"%@", encodedString);
     
     NSURL *url = [NSURL URLWithString:encodedString];
-
+    
+    //// STREET VIEW ////
+    
+//    NSString *streetViewString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/streetview?size=600x300&location=%@&heading=151.78&pitch=-0.76&key=AIzaSyAd1r6-rsY8RMiF4iXNjoF9quj999DSiaQ",self.destination];
+//
+//    NSString *encodedStreetViewString = [streetViewString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+//    
+//    NSURL *streetViewURL = [NSURL URLWithString:encodedStreetViewString];
+//    
+//    [APIManager GETRequestWithURL:streetViewURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+//        
+//    }];
+    
     [APIManager GETRequestWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
         if  (data!=nil){
@@ -169,7 +182,7 @@ UITableViewDelegate
             if (!error){
                 self.steps = json[@"routes"][0][@"legs"][0][@"steps"];
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                //NSLog(@"Path Steps: %@",self.steps);
+                    //NSLog(@"Path Steps: %@",self.steps);
                     
                     self.directionsArray = [[NSMutableArray alloc]init];
                     
@@ -177,14 +190,14 @@ UITableViewDelegate
                     
                     for (NSDictionary *step in self.steps){
                         NSString *htmlInstructions = [step objectForKey:@"html_instructions"];
-                        [self.directionsArray addObject:htmlInstructions];
+                        [self.directionsArray addObject:[htmlInstructions stringByStrippingHTML]];
                     }
-                   
-                   NSLog(@"directions array: %@", self.directionsArray);
-                
+                    
+                    //NSLog(@"directions array: %@", self.directionsArray);
+                    
                     
                     GMSPath *path =[GMSPath pathFromEncodedPath:
-                     json[@"routes"][0][@"overview_polyline"][@"points"]];
+                                    json[@"routes"][0][@"overview_polyline"][@"points"]];
                     self.polyline = [GMSPolyline polylineWithPath:path];
                     self.polyline.strokeWidth = 7;
                     self.polyline.strokeColor = [UIColor greenColor];
@@ -200,7 +213,29 @@ UITableViewDelegate
 
 - (IBAction)getBikeDirectionsFromApi:(UIButton *)sender {
     
+    
+    
     [self makeNewBikeDirectionsAPIRequest:^{
+        
+        //// STREET VIEW ////
+        
+            NSString *streetViewString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/streetview?size=600x300&location=%@&heading=151.78&pitch=-0.76&key=AIzaSyAd1r6-rsY8RMiF4iXNjoF9quj999DSiaQ",self.destination];
+        
+            NSLog(@"Street View String: %@",streetViewString);
+        
+            NSString *encodedStreetViewString = [streetViewString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        
+            NSURL *streetViewURL = [NSURL URLWithString:encodedStreetViewString];
+        
+            [APIManager GETRequestWithURL:streetViewURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                
+                NSDictionary *svJson = [NSJSONSerialization JSONObjectWithData:data
+                                                                       options:0
+                                                                         error:nil];
+                
+                //NSLog(@"Street View json: %@",svJson);
+            }];
+        
         [self.tableView reloadData];
         NSLog(@"block works");
     }];

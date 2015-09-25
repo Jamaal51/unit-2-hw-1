@@ -21,10 +21,10 @@
             </objects>
             <point key="canvasLocation" x="-276" y="377"/>
         </scene>
-        <!--Search Location View Controller-->
+        <!--Search Destination-->
         <scene sceneID="DLn-QK-C3p">
             <objects>
-                <viewController id="VcM-iV-d9G" customClass="SearchLocationViewController" sceneMemberID="viewController">
+                <viewController title="Search Destination" id="VcM-iV-d9G" customClass="SearchLocationViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GEa-nv-ywO"/>
                         <viewControllerLayoutGuide type="bottom" id="A1Q-BT-s7l"/>
@@ -33,9 +33,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="e98-wn-q1a">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="14" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="e98-wn-q1a">
                                 <rect key="frame" x="20" y="72" width="560" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Txx-Sr-mMy">
@@ -91,12 +91,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pVw-sT-p2N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="588" y="339"/>
+            <point key="canvasLocation" x="692" y="353"/>
         </scene>
-        <!--Google Maps View Controller-->
+        <!--Bike It!-->
         <scene sceneID="mgk-6S-WOv">
             <objects>
-                <viewController id="oBo-P0-9tr" customClass="GoogleMapsViewController" sceneMemberID="viewController">
+                <viewController title="Bike It!" id="oBo-P0-9tr" customClass="GoogleMapsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="N7r-pq-n3r"/>
                         <viewControllerLayoutGuide type="bottom" id="QoW-qq-eUu"/>
@@ -127,10 +127,6 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NZx-Ic-22P" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="64" width="600" height="243"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p8H-yv-Y9X">
                                 <rect key="frame" x="0.0" y="307" width="600" height="243"/>
                                 <subviews>
@@ -180,6 +176,10 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NZx-Ic-22P" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="64" width="600" height="243"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -210,7 +210,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z7m-DQ-47y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1301" y="333"/>
+            <point key="canvasLocation" x="1415" y="353"/>
         </scene>
     </scenes>
 </document>

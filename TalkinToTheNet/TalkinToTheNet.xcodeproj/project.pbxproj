@@ -12,6 +12,7 @@
 		8D7DCD541BAF859400A92AD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D7DCD521BAF859400A92AD2 /* Main.storyboard */; };
 		8D7DCD561BAF859400A92AD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D7DCD551BAF859400A92AD2 /* Assets.xcassets */; };
 		8D7DCD591BAF859400A92AD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D7DCD571BAF859400A92AD2 /* LaunchScreen.storyboard */; };
+		9A70E5B31BB4CE3B004FCED1 /* NSString+NSString_Sanitize.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A70E5B21BB4CE3B004FCED1 /* NSString+NSString_Sanitize.m */; settings = {ASSET_TAGS = (); }; };
 		9A880C4C1BB1B86C0096C660 /* GoogleMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A880C4B1BB1B86C0096C660 /* GoogleMapsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		9A880C4E1BB1D97E0096C660 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A880C4D1BB1D97E0096C660 /* CoreLocation.framework */; };
 		9AE948401BAF931400787EA3 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE9483F1BAF931400787EA3 /* APIManager.m */; settings = {ASSET_TAGS = (); }; };
@@ -30,6 +31,8 @@
 		8D7DCD551BAF859400A92AD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D7DCD581BAF859400A92AD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D7DCD5A1BAF859400A92AD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A70E5B11BB4CE3B004FCED1 /* NSString+NSString_Sanitize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NSString_Sanitize.h"; sourceTree = "<group>"; };
+		9A70E5B21BB4CE3B004FCED1 /* NSString+NSString_Sanitize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSString_Sanitize.m"; sourceTree = "<group>"; };
 		9A880C4A1BB1B86C0096C660 /* GoogleMapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleMapsViewController.h; sourceTree = "<group>"; };
 		9A880C4B1BB1B86C0096C660 /* GoogleMapsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleMapsViewController.m; sourceTree = "<group>"; };
 		9A880C4D1BB1D97E0096C660 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -96,6 +99,8 @@
 				9AE948421BAF95A300787EA3 /* SearchLocationViewController.m */,
 				9A880C4A1BB1B86C0096C660 /* GoogleMapsViewController.h */,
 				9A880C4B1BB1B86C0096C660 /* GoogleMapsViewController.m */,
+				9A70E5B11BB4CE3B004FCED1 /* NSString+NSString_Sanitize.h */,
+				9A70E5B21BB4CE3B004FCED1 /* NSString+NSString_Sanitize.m */,
 				8D7DCD521BAF859400A92AD2 /* Main.storyboard */,
 				8D7DCD551BAF859400A92AD2 /* Assets.xcassets */,
 				8D7DCD571BAF859400A92AD2 /* LaunchScreen.storyboard */,
@@ -229,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AE948401BAF931400787EA3 /* APIManager.m in Sources */,
+				9A70E5B31BB4CE3B004FCED1 /* NSString+NSString_Sanitize.m in Sources */,
 				8D7DCD4E1BAF859400A92AD2 /* AppDelegate.m in Sources */,
 				9AED01531BAFB1E6007542DC /* SearchResults.m in Sources */,
 				9AE948431BAF95A300787EA3 /* SearchLocationViewController.m in Sources */,

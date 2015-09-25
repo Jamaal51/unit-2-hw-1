@@ -19,7 +19,8 @@ completionHandler  {
     
     NSURLSession *session = [NSURLSession sharedSession];
     
-    NSURLSessionDataTask *task = [session dataTaskWithURL:URL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    NSURLSessionDataTask *task = [session dataTaskWithURL:URL
+                                        completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
