@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "APIManager.h"
 #import "NSString+NSString_Sanitize.h"
+#import "DirectionsTableViewCell.h"
 
 @import GoogleMaps;
 
@@ -27,8 +28,15 @@ UITableViewDelegate
 @property (nonatomic) NSString *destination;
 @property (nonatomic) NSArray *steps;
 @property (nonatomic) GMSPolyline *polyline;
-@property (nonatomic) NSMutableArray *directionsArray;
+
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+
+@property (nonatomic) NSMutableArray *directionsArray;
+@property (nonatomic) NSMutableArray *distanceArray;
+@property (nonatomic) NSMutableArray *durationArray;
+@property (nonatomic) NSMutableArray *maneuverArray;
+@property (nonatomic) NSMutableArray *numberArray;
+
 
 @end
 
@@ -182,16 +190,40 @@ UITableViewDelegate
             if (!error){
                 self.steps = json[@"routes"][0][@"legs"][0][@"steps"];
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    //NSLog(@"Path Steps: %@",self.steps);
+                    NSLog(@"Path Steps: %@",self.steps);
                     
                     self.directionsArray = [[NSMutableArray alloc]init];
-                    
+                    self.numberArray = [[NSMutableArray alloc]init];
+                    self.distanceArray = [[NSMutableArray alloc]init];
+                    self.durationArray = [[NSMutableArray alloc]init];
+                    self.maneuverArray = [[NSMutableArray alloc]init];
+                    NSInteger directionsCount = 0;
+                    NSString *maneuver;
                     //get directions in array to present in tableview
                     
                     for (NSDictionary *step in self.steps){
                         NSString *htmlInstructions = [step objectForKey:@"html_instructions"];
+                        NSString *distance = step[@"distance"][@"text"];
+                        NSString *duration = step[@"duration"][@"text"];
+                        if (step[@"maneuver"] == nil){
+                        maneuver = @"";
+                        } else {
+                        maneuver = step[@"maneuver"];
+                        }
+                        directionsCount++;
+                        
                         [self.directionsArray addObject:[htmlInstructions stringByStrippingHTML]];
+                        [self.distanceArray addObject:distance];
+                        [self.durationArray addObject:duration];
+                        [self.maneuverArray addObject:maneuver];
+                        [self.numberArray addObject:[NSNumber numberWithInteger:directionsCount]];
                     }
+                    NSLog(@"directions array: %@", self.directionsArray);
+                    NSLog(@"distance array: %@", self.distanceArray);
+                    NSLog(@"duration array: %@", self.durationArray);
+                    NSLog(@"maneuver array: %@",self.maneuverArray);
+                    NSLog(@"number array: %@",self.numberArray);
+
                     
                     //NSLog(@"directions array: %@", self.directionsArray);
                     
@@ -255,13 +287,15 @@ UITableViewDelegate
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
+    DirectionsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
     
-    //cell.textLabel.text = @"working";
+    //cell.textLabel.text = [self.directionsArray objectAtIndex:indexPath.row];
     
-    //NSString *firstString = [self.directionsArray firstObject];
-    
-    cell.textLabel.text = [self.directionsArray objectAtIndex:indexPath.row];
+    cell.numberLabel.text = [NSString stringWithFormat:@"%@.",[self.numberArray objectAtIndex:indexPath.row]];
+    cell.directionsLabel.text = [self.directionsArray objectAtIndex:indexPath.row];
+    cell.distanceLabel.text = [self.distanceArray objectAtIndex:indexPath.row];
+    cell.durationLabel.text = [self.durationArray objectAtIndex: indexPath.row];
+    cell.directionImage.image = [UIImage imageNamed:[self.maneuverArray objectAtIndex:indexPath.row]];
     
     return cell;
 }
