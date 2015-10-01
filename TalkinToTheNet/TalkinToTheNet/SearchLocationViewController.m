@@ -47,9 +47,9 @@ CLLocationManagerDelegate
     
     //mandatory check http://stackoverflow.com/questions/24062509/location-services-not-working-in-ios-8
     
-    if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]){
-        [self.locationManager requestAlwaysAuthorization];
-    }
+//    if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]){
+//        [self.locationManager requestAlwaysAuthorization];
+//    }
     if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]){
         [self.locationManager requestWhenInUseAuthorization];
     }
@@ -98,7 +98,7 @@ CLLocationManagerDelegate
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
                                                                  options:0
                                                                    error:nil];
-            //NSLog(@"%@",json);
+            NSLog(@"%@",json);
             
             NSArray *venues = [[json objectForKey:@"response"] objectForKey:@"venues"];
             

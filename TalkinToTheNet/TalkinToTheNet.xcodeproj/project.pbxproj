@@ -122,8 +122,8 @@
 				9AED01521BAFB1E5007542DC /* SearchResults.m */,
 				9A70E5BA1BB4FE28004FCED1 /* DirectionsTableViewCell.h */,
 				9A70E5BB1BB4FE28004FCED1 /* DirectionsTableViewCell.m */,
-				9A70E5B21BB4CE3B004FCED1 /* NSString+NSString_Sanitize.m */,
 				9A70E5B11BB4CE3B004FCED1 /* NSString+NSString_Sanitize.h */,
+				9A70E5B21BB4CE3B004FCED1 /* NSString+NSString_Sanitize.m */,
 			);
 			name = "Delegates + Classes";
 			sourceTree = "<group>";

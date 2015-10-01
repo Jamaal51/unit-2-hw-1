@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "458F79B2312A5EF0A7F09D9D46DE35A16D1CB335",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "458F79B2312A5EF0A7F09D9D46DE35A16D1CB335" : 0,
+    "C98F34640CDAF8C591AEB91EEF768A6198C4416E" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "0550973F-91C5-45C6-B175-DA5EA44CD36D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "458F79B2312A5EF0A7F09D9D46DE35A16D1CB335" : "unit-2-hw-1\/",
+    "C98F34640CDAF8C591AEB91EEF768A6198C4416E" : "unit-2-hw-1\/TalkinToTheNet\/Pods\/hpple\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "TalkinToTheNet",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "TalkinToTheNet\/TalkinToTheNet.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Jamaal51\/unit-2-hw-1.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "458F79B2312A5EF0A7F09D9D46DE35A16D1CB335"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/topfunky\/hpple.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C98F34640CDAF8C591AEB91EEF768A6198C4416E"
+    }
+  ]
+}
